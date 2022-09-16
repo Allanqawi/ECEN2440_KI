@@ -11,6 +11,7 @@ GEN_CMDS__FLAG :=
 
 ORDERED_OBJS += \
 "./gpio.obj" \
+"./handlers.obj" \
 "./main.obj" \
 "./startup_msp432p4111_ccs.obj" \
 "./system_msp432p4111.obj" \
@@ -157,8 +158,8 @@ BB_Lab2_ECEN2440.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "gpio.obj" "main.obj" "startup_msp432p4111_ccs.obj" "system_msp432p4111.obj" 
-	-$(RM) "gpio.d" "main.d" "startup_msp432p4111_ccs.d" "system_msp432p4111.d" 
+	-$(RM) "gpio.obj" "handlers.obj" "main.obj" "startup_msp432p4111_ccs.obj" "system_msp432p4111.obj" 
+	-$(RM) "gpio.d" "handlers.d" "main.d" "startup_msp432p4111_ccs.d" "system_msp432p4111.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

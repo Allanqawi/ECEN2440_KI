@@ -1,4 +1,5 @@
 "./gpio.obj"
+"./handlers.obj"
 "./main.obj"
 "./startup_msp432p4111_ccs.obj"
 "./system_msp432p4111.obj"
