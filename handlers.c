@@ -7,20 +7,30 @@
 
 //this file will contain all the handler functions
 
-//this is an example of what handler function should look like
-//it is used to process the interrupts sent from a button press to toggle an LED
-/*
-void PORT1_IRQHandler(void)
-{
+// interrupt to start sequence of lights
+void PORT1_IRQHandler(void){
     if((P1->IFG & BIT1)==BIT1){
-        counter++;          //increment global variable
-        //When leaving ISR clear P1 flag to let the NVIC know that we are done with
-the interrupt
-        P1 -> IFG &= ~BIT1;
-        //Toggle the RED LED
-        P1->OUT ^= BIT0;
+        __disable_irq();
+        counter++;
+        count_down();
+        P1->IFG &= ~BIT1; // clear flag
+        __enable_irq();
     }
-    //Enable Interrupts
-   __NVIC_EnableIRQ(PORT1_IRQn);
+    __NVIC_EnableIRQ(PORT1_IRQn);
 }
-*/
+// interrupt to recognize winner
+void PORT2_IRQHandler(void){
+    if((P2->IFG & BIT5)==BIT5){
+        p1++; // first player wins
+        P2->IFG &= ~BIT5; // clear flag
+    }
+    if((P2->IFG & BIT6)==BIT6){
+            p2++; // second player wins
+            P2->IFG &= ~BIT6; // clear flag
+    }
+    if((P2->IFG & BIT7)==BIT7){
+            p1++; // third player wins
+            P2->IFG &= ~BIT7; // clear flag
+    }
+    __NVIC_EnableIRQ(PORT2_IRQn);
+}
