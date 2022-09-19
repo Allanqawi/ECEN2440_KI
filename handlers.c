@@ -1,3 +1,7 @@
+#include "msp.h"
+#include "handlers.h"
+#include "gpio.h"
+volatile uint16_t counter = 0, p1=0, p2=0,p3=0;
 /*
  * handlers.c
  *
@@ -12,7 +16,9 @@ void PORT1_IRQHandler(void){
     if((P1->IFG & BIT1)==BIT1){
         __disable_irq();
         counter++;
-        count_down();
+        //count_down();
+        P1->DIR |= BIT0;
+        P1->OUT |= BIT0;
         P1->IFG &= ~BIT1; // clear flag
         __enable_irq();
     }
@@ -29,7 +35,7 @@ void PORT2_IRQHandler(void){
             P2->IFG &= ~BIT6; // clear flag
     }
     if((P2->IFG & BIT7)==BIT7){
-            p1++; // third player wins
+            p3++; // third player wins
             P2->IFG &= ~BIT7; // clear flag
     }
     __NVIC_EnableIRQ(PORT2_IRQn);

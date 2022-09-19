@@ -1,9 +1,7 @@
 #include "msp.h"
 #include "gpio.h"
 #include "handlers.h"
-
-
-volatile uint16_t counter = 0, p1=0, p2=0,p3=0;
+#include <stdlib.h>
 
 void main(void)
 {
@@ -73,8 +71,5 @@ void main(void)
     __enable_irq();
     //Set the flag
     //P1->IFG |= BIT1;
-    while(1)
-    {
-        printf("counter: %u\n", counter);
-    }
+    while(1);
 }
