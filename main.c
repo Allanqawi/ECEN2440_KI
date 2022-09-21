@@ -11,9 +11,9 @@ void main(void)
     P2->DIR |= BIT4; //sets pins as outputs
     P5->DIR |= BIT6;
     P6->DIR |= BIT6;
-    P2->OUT ^= BIT4; //turns off winner LEDS
-    P5->OUT ^= BIT6;
-    P6->OUT ^= BIT6;
+    P2->OUT &= ~BIT4; //turns off winner LEDS
+    P5->OUT &= ~BIT6;
+    P6->OUT &= ~BIT6;
     //Temporarily disable interrupts to configure P1.0
     __disable_irq();                //Disables all interrupts
     __NVIC_DisableIRQ(PORT1_IRQn);  //Disables just the one for PORT1 in the NVIC
